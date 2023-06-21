@@ -12,3 +12,16 @@ CREATE TABLE users (
     bio varchar(500),
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE activities (
+    activity_id int NOT NULL AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    description varchar(500) NOT NULL,
+    date BIGINT NOT NULL,
+    created_on BIGINT NOT NULL,
+    created_by int NOT NULL,
+    updated_on BIGINT,
+    updated_by int,
+    status TINYINT NOT NULL,
+    PRIMARY KEY (activity_id)
+);
