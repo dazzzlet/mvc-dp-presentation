@@ -1,7 +1,9 @@
 package com.netcompany.oopdemo.service;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.netcompany.oopdemo.dto.Activity;
 import com.netcompany.oopdemo.dto.User;
 import com.netcompany.oopdemo.repository.UserRepository;
 import com.netcompany.oopdemo.utils.SecurityUtils;
@@ -29,5 +31,13 @@ public class UserService {
             return this.userRepository.getUserById(userId);
         }
         return null;
+    }
+
+    public void updateUser(User newUser) {
+
+    }
+
+    public List<User> getAllUsers() {
+        return this.userRepository.getAllUsers();
     }
 }

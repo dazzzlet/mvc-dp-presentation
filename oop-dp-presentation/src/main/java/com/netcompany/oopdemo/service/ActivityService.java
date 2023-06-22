@@ -23,8 +23,12 @@ public class ActivityService {
         return this.activityRepository.getAllActivity();
     }
 
-    public List<Register> getAllRegisteredUserForActivity(int activityId) {
-        return this.registerRepository.getAllRegisteredUserForActivity(activityId);
+    public List<Register> getAllRegisteredUserForActivity(int userId) {
+        return this.registerRepository.getAllRegisteredUserForActivity(userId);
+    }
+
+    public List<Register> getAllRegisteredActivityForUser(int userId) {
+        return this.registerRepository.getAllRegisteredActivityForUser(userId);
     }
 
     public Register getRegisteredUserForActivity(int userId, int activityId) {

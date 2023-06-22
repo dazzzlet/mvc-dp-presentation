@@ -132,4 +132,36 @@ public class RegisterRepository extends AbstractRepository {
             }
         }
     }
+
+    public List<Register> getAllRegisteredActivityForUser(int userId) {
+        List<Register> result = new ArrayList<>();
+        ResultSet resultSet = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement("SELECT user_id,activity_id,register_on " +
+                    "FROM registers " +
+                    "WHERE user_id = ?");
+            stmt.setInt(1, userId);
+            resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                Register register = new Register();
+                register.loadDataRow(resultSet);
+                result.add(register);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
 }

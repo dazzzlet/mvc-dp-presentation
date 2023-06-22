@@ -5,11 +5,14 @@ import static com.netcompany.oopdemo.utils.Constants.APPLICATION_HEADER;
 import com.netcompany.oopdemo.core.AbstractAuthorizedMenu;
 import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.core.MenuItem;
+import com.netcompany.oopdemo.menu.organizer.activity.OrganizerListActivityMenu;
+import com.netcompany.oopdemo.menu.organizer.user.OrganizerListUserMenu;
 
 public class OrganizerDashboardMenu extends AbstractAuthorizedMenu implements MenuItem {
     public OrganizerDashboardMenu(ConsoleContext appCtx) {
         super(appCtx);
         this.menuItems.add(new OrganizerListActivityMenu(appCtx));
+        this.menuItems.add(new OrganizerListUserMenu(appCtx));
     }
 
     @Override

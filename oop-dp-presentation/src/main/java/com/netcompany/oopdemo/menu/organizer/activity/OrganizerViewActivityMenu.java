@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.organizer;
+package com.netcompany.oopdemo.menu.organizer.activity;
 
 import java.util.List;
 
@@ -70,7 +70,7 @@ public class OrganizerViewActivityMenu extends AbstractAuthorizedMenu {
                             "Description: %s\n" +
                             "Date: %s\n" +
                             "Status: %s\n" +
-                            "Number of signed up: %d\n" +
+                            "Number of signed up member: %d\n" +
                             "Created on: %s\n" +
                             "Created by: %s\n" +
                             "Updated on: %s\n" +

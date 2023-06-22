@@ -1,5 +1,7 @@
 package com.netcompany.oopdemo.dto;
 
+import com.netcompany.oopdemo.enums.UserRole;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,7 +10,7 @@ public class User implements DTO {
     private String username;
     private String firstname;
     private String password;
-    private String role;
+    private UserRole role;
     private String bio;
 
     public int getId() {
@@ -43,11 +45,11 @@ public class User implements DTO {
         this.password = password;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
@@ -59,13 +61,24 @@ public class User implements DTO {
         this.bio = bio;
     }
 
+    public User clone() {
+        User newUser = new User();
+        newUser.setId(this.id);
+        newUser.setUsername(this.username);
+        newUser.setFirstname(this.firstname);
+        newUser.setPassword(this.password);
+        newUser.setRole(this.role);
+        newUser.setBio(this.bio);
+        return newUser;
+    }
+
     @Override
     public void loadDataRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt(1);
         this.username = rs.getString(2);
         this.firstname = rs.getString(3);
         this.password = rs.getString(4);
-        this.role = rs.getString(5);
+        this.role = UserRole.getUserRole(rs.getString(5));
         this.bio = rs.getString(6);
     }
 }

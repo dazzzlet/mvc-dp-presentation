@@ -10,7 +10,6 @@ import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.core.MenuItem;
 import com.netcompany.oopdemo.dto.Activity;
 import com.netcompany.oopdemo.enums.ActivityStatus;
-import com.netcompany.oopdemo.menu.organizer.OrganizerViewActivityMenu;
 import com.netcompany.oopdemo.service.ActivityService;
 import com.netcompany.oopdemo.utils.StringUtils;
 
