@@ -47,12 +47,13 @@ public class LoginMenuItem implements MenuItem {
         String userName = scanner.nextLine();
         System.out.println("Password: ");
         String password = scanner.nextLine();
-        User user = new User();
+        User user = null;
         // User user = this.userService.getUserByUsernamePassword(userName, password);
         if (user != null) {
             Identity identity = new Identity(user);
             return identity;
         }
+        appCtx.redirect("Authentication");
         return null;
     }
 }
