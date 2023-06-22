@@ -7,6 +7,7 @@ import com.netcompany.demo.dto.User;
 import com.netcompany.demo.repository.UserRepository;
 import com.netcompany.demo.service.UserService;
 
+import java.io.Console;
 import java.util.Scanner;
 
 import static com.netcompany.demo.utils.Constants.APPLICATION_HEADER;
@@ -27,26 +28,25 @@ public class LoginMenu implements MenuItem {
 
     @Override
     public void launch() {
-        Scanner scanner = this.appCtx.getScanner();
+        Console console = this.appCtx.getConsole();
         do {
             System.out.println(APPLICATION_HEADER);
             System.out.println("           LOGIN");
             System.out.println();
-            Identity identity = this.loginByUsernamePassword(scanner);
+            Identity identity = this.loginByUsernamePassword(console);
             if (identity != null) {
                 this.appCtx.setIdentity(identity);
                 return;
             }
             System.out.println("Username or password is invalid. Please tried again!");
-            scanner.nextLine();
+            console.readLine();
         } while (true);
     }
 
-    private Identity loginByUsernamePassword(Scanner scanner) {
-        System.out.println("Username: ");
-        String userName = scanner.nextLine();
-        System.out.println("Password: ");
-        String password = scanner.nextLine();
+    private Identity loginByUsernamePassword(Console console) {
+        System.out.print("Username: ");
+        String userName = console.readLine();
+        String password = String.valueOf(console.readPassword("Password: "));
         User user = this.userService.getUserByUsernamePassword(userName, password);
         if (user != null) {
             Identity identity = new Identity(user);

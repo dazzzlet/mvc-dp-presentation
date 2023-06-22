@@ -1,5 +1,8 @@
 package com.netcompany.demo.core;
 
+import com.netcompany.demo.utils.ConsoleUtils;
+
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,6 +12,7 @@ public abstract class AbstractMenu implements Menu {
     private static final Pattern numericPattern = Pattern.compile("^\\d+$");
     protected ConsoleContext appCtx;
     protected List<MenuItem> menuItems;
+    protected boolean isCleanMenu = true;
 
     public AbstractMenu(ConsoleContext appCtx) {
         this.appCtx = appCtx;
@@ -25,8 +29,11 @@ public abstract class AbstractMenu implements Menu {
         String userChoise = null;
         int index;
         int userChoiseInt = 0;
-        Scanner scanner = this.appCtx.getScanner();
+        Console console = this.appCtx.getConsole();
         do {
+            if (this.isCleanMenu) {
+                ConsoleUtils.cleanConsole();
+            }
             System.out.println(this.getMenuHeader());
             index = 1;
             for (MenuItem menuItem : this.getMenuItems()) {
@@ -36,7 +43,7 @@ public abstract class AbstractMenu implements Menu {
             System.out.println(String.format("0. %s", this.getBackItemName()));
             do {
                 System.out.print(this.getSelectInstruction());
-                userChoise = scanner.nextLine();
+                userChoise = console.readLine();
             } while (!this.checkUserChoise(userChoise));
             userChoiseInt = Integer.parseInt(userChoise);
             if (userChoiseInt != 0) {

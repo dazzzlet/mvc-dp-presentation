@@ -23,4 +23,11 @@ public class UserService {
         }
         return user;
     }
+
+    public User getUserById(Integer userId) {
+        if (userId != null) {
+            return this.userRepository.getUserById(userId);
+        }
+        return null;
+    }
 }

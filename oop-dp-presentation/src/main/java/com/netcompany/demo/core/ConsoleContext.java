@@ -1,21 +1,25 @@
 package com.netcompany.demo.core;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import com.netcompany.demo.dto.Identity;
 
+import java.io.Console;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ConsoleContext {
-    private Scanner scanner;
+    Console console;
     private Connection connection;
     private Identity identity;
 
-    public ConsoleContext(Scanner scanner) {
-        this.scanner = scanner;
+    public ConsoleContext(Console console, MysqlDataSource dataSource) throws SQLException {
+        this.console = console;
+        this.connection = dataSource.getConnection();
     }
 
-    public Scanner getScanner() {
-        return scanner;
+    public Console getConsole() {
+        return console;
     }
 
     public Connection getConnection() {
