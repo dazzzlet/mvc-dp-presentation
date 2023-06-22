@@ -25,3 +25,10 @@ CREATE TABLE activities (
     status TINYINT NOT NULL,
     PRIMARY KEY (activity_id)
 );
+
+CREATE TABLE registers (
+    user_id int NOT NULL,
+    activity_id int NOT NULL,
+    register_on BIGINT NOT NULL,
+    PRIMARY KEY (user_id, activity_id)
+);
