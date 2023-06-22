@@ -10,6 +10,7 @@ public class MemberDashboardMenu extends AbstractAuthorizedMenu implements MenuI
     public MemberDashboardMenu(ConsoleContext appCtx) {
         super(appCtx);
         this.menuItems.add(new MemberListActivityMenu(appCtx));
+        this.menuItems.add(new ViewMyProfileMenu(appCtx));
     }
 
     @Override
