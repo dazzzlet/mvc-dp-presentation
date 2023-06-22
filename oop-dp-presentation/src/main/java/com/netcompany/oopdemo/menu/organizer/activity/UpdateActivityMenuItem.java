@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.organizer;
+package com.netcompany.oopdemo.menu.organizer.activity;
 
 import java.io.Console;
 import java.time.Instant;
@@ -15,21 +15,10 @@ import com.netcompany.oopdemo.utils.StringUtils;
 
 public class UpdateActivityMenuItem extends AbstractActivityMenuItem {
     private final ActivityService activityService;
-    private Activity activity;
 
     public UpdateActivityMenuItem(ConsoleContext appCtx) {
         super(appCtx);
         this.activityService = new ActivityService(appCtx.getConnection());
-    }
-
-    @Override
-    public Activity getActivity() {
-        return activity;
-    }
-
-    @Override
-    public void setActivity(Activity activity) {
-        this.activity = activity;
     }
 
     @Override
@@ -41,9 +30,9 @@ public class UpdateActivityMenuItem extends AbstractActivityMenuItem {
     public void launch() {
         ConsoleUtils.cleanConsole();
         Console console = this.appCtx.getConsole();
-        String newTitle = this.activity.getTitle();
-        String newDescription = this.activity.getDescription();
-        String newDate = StringUtils.formatDate(this.activity.getDateValue(), "yyyy/MM/dd");
+        String newTitle = this.getActivity().getTitle();
+        String newDescription = this.getActivity().getDescription();
+        String newDate = StringUtils.formatDate(this.getActivity().getDateValue(), "yyyy/MM/dd");
         while (true) {
             System.out.println("Update activity");
             System.out.println("      ---");
@@ -59,11 +48,11 @@ public class UpdateActivityMenuItem extends AbstractActivityMenuItem {
                     String.format("Date (%s): ", newDate)
             );
             newDate = console.readLine();
-            Activity newActivity = this.activity.clone();
+            Activity newActivity = this.getActivity().clone();
             ConsoleUtils.cleanConsole();
             if (this.validateValues(newActivity, newTitle, newDescription, newDate)) {
                 this.activityService.updateActivity(newActivity, appCtx.getIdentity());
-                this.activity = newActivity;
+                this.setActivity(newActivity);
                 System.out.println("_ Update activity successfully. Please press enter to continues");
                 console.readLine();
                 ConsoleUtils.cleanConsole();

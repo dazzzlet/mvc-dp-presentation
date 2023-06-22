@@ -73,4 +73,22 @@ public class UserRepository extends AbstractRepository {
         }
         return users;
     }
+
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        PreparedStatement stmt = null;
+        try {
+            stmt = conn.prepareStatement("SELECT user_id,username,firstname,password,role,bio " +
+                    "FROM users ");
+            ResultSet result = stmt.executeQuery();
+            while (result.next()) {
+                User user = new User();
+                user.loadDataRow(result);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
 }

@@ -12,7 +12,7 @@ public class Identity {
         this.userId = user.getId();
         this.userName = user.getUsername();
         this.fullName = user.getFirstname();
-        this.role = UserRole.getUserRole(user.getRole());
+        this.role = user.getRole();
     }
 
     public int getUserId() {
