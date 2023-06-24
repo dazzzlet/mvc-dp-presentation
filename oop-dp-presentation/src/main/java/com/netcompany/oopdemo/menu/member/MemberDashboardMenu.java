@@ -5,6 +5,8 @@ import static com.netcompany.oopdemo.utils.Constants.APPLICATION_HEADER;
 import com.netcompany.oopdemo.core.AbstractAuthorizedMenu;
 import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.core.MenuItem;
+import com.netcompany.oopdemo.menu.member.activity.MemberListActivityMenu;
+import com.netcompany.oopdemo.menu.member.user.ViewMyProfileMenu;
 
 public class MemberDashboardMenu extends AbstractAuthorizedMenu implements MenuItem {
     public MemberDashboardMenu(ConsoleContext appCtx) {

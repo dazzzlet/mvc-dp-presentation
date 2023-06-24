@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.member;
+package com.netcompany.oopdemo.menu.member.user;
 
 import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.dto.User;

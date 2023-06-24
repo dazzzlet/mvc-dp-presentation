@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.member;
+package com.netcompany.oopdemo.menu.member.user;
 
 import com.netcompany.oopdemo.core.AbstractAuthorizedMenu;
 import com.netcompany.oopdemo.core.ConsoleContext;
@@ -6,7 +6,6 @@ import com.netcompany.oopdemo.core.MenuItem;
 import com.netcompany.oopdemo.dto.Register;
 import com.netcompany.oopdemo.dto.User;
 import com.netcompany.oopdemo.menu.common.AbstractUserMenuItem;
-import com.netcompany.oopdemo.menu.organizer.user.UpdateUserMenuItem;
 import com.netcompany.oopdemo.service.ActivityService;
 import com.netcompany.oopdemo.service.UserService;
 
