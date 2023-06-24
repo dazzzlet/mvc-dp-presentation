@@ -1,6 +1,7 @@
 package com.netcompany.mvcdemo.core;
 
 import com.netcompany.mvcdemo.models.Identity;
+import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.sql.Connection;
 import java.util.List;
@@ -12,8 +13,9 @@ public class ConsoleContext {
     private Identity identity;
     private List<AbstractMenu> menus;
 
-    public ConsoleContext(Scanner scanner) {
+    public ConsoleContext(Scanner scanner, Connection connection) {
         this.scanner = scanner;
+        this.connection = connection;
     }
 
     public Scanner getScanner() {
@@ -22,6 +24,10 @@ public class ConsoleContext {
 
     public Connection getConnection() {
         return this.connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
     public void setIdentity(Identity identity) {

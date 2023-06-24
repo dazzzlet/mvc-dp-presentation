@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.member;
+package com.netcompany.oopdemo.menu.member.activity;
 
 import com.netcompany.oopdemo.core.AbstractAuthorizedMenu;
 import com.netcompany.oopdemo.core.ConsoleContext;

@@ -91,4 +91,19 @@ public class UserRepository extends AbstractRepository {
         }
         return users;
     }
+
+    public void update(User user) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE users SET " +
+                    " firstname = ?" +
+                    ",bio = ?" +
+                    "WHERE user_id = ?");
+            stmt.setString(1, user.getFirstname());
+            stmt.setString(2, user.getBio());
+            stmt.setLong(3, user.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

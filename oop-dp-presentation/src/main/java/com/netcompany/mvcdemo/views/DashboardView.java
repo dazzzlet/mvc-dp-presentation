@@ -1,30 +1,21 @@
 package com.netcompany.mvcdemo.views;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import com.netcompany.mvcdemo.core.AbstractMenu;
 import com.netcompany.mvcdemo.core.ConsoleContext;
 import com.netcompany.mvcdemo.core.MenuItem;
-import com.netcompany.mvcdemo.menu.LoginMenuItem;
-import com.netcompany.mvcdemo.menu.RegistrationMenuItem;
-import com.netcompany.mvcdemo.models.Identity;
+import com.netcompany.mvcdemo.menu.UpdateMyProfileMenuItem;
+import com.netcompany.mvcdemo.menu.ViewMyProfileMenuItem;
 
 public class DashboardView extends AbstractMenu {
-    private Identity identity;
-
-    private List<MenuItem> preLoginMenu = new ArrayList<MenuItem>();
-
     public DashboardView(ConsoleContext appCtx) {
         super(appCtx);
-        MenuItem loginMenuItem = new LoginMenuItem(appCtx);
-        MenuItem registrationMenuItem = new RegistrationMenuItem(appCtx);
-
+        MenuItem viewMyProfileMenuItem = new ViewMyProfileMenuItem(appCtx);
+        MenuItem updateMyProfileMenuItem = new UpdateMyProfileMenuItem(appCtx);
         super.menuItems = new ArrayList<MenuItem>();
-        super.menuItems.add(loginMenuItem);
-        super.menuItems.add(registrationMenuItem);
-        Collections.addAll(this.preLoginMenu, loginMenuItem, registrationMenuItem);
+        super.menuItems.add(viewMyProfileMenuItem);
+        super.menuItems.add(updateMyProfileMenuItem);
     }
 
     public String getBackItemName() {

@@ -1,4 +1,4 @@
-package com.netcompany.oopdemo.menu.member;
+package com.netcompany.oopdemo.menu.member.activity;
 
 import java.util.ArrayList;
 import java.util.Collections;

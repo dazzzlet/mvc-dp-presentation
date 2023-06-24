@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public void updateUser(User newUser) {
-
+        this.userRepository.update(newUser);
     }
 
     public List<User> getAllUsers() {
