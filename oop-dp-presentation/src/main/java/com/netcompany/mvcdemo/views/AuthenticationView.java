@@ -6,6 +6,7 @@ import com.netcompany.mvcdemo.core.AbstractMenu;
 import com.netcompany.mvcdemo.core.ConsoleContext;
 import com.netcompany.mvcdemo.core.MenuItem;
 import com.netcompany.mvcdemo.menu.LoginMenuItem;
+import com.netcompany.mvcdemo.menu.LogoutMenuItem;
 import com.netcompany.mvcdemo.menu.RegistrationMenuItem;
 
 public class AuthenticationView extends AbstractMenu {
@@ -13,10 +14,12 @@ public class AuthenticationView extends AbstractMenu {
         super(appCtx);
         MenuItem loginMenuItem = new LoginMenuItem(appCtx);
         MenuItem registrationMenuItem = new RegistrationMenuItem(appCtx);
+        MenuItem logoutMenuItem = new LogoutMenuItem(appCtx);
 
         super.menuItems = new ArrayList<MenuItem>();
         super.menuItems.add(loginMenuItem);
         super.menuItems.add(registrationMenuItem);
+        super.menuItems.add(logoutMenuItem);
     }
 
     public String getBackItemName() {

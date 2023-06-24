@@ -11,6 +11,15 @@ public class User implements DTO {
     private String password;
     private String role;
     private String bio;
+    public User() {}
+    public User(String username, String password, String firstName, String role, String bio) {
+        this.username = username;
+        this.firstName = firstName;
+        this.firstName = firstName;
+        this.bio = bio;
+        this.password = password;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
