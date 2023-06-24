@@ -1,6 +1,6 @@
 package com.netcompany.demo;
 
-import com.netcompany.oopdemo.utils.SecurityUtils;
+import com.netcompany.demo.utils.SecurityUtils;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
