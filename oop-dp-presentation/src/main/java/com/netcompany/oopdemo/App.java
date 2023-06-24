@@ -2,6 +2,7 @@ package com.netcompany.oopdemo;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import com.mysql.cj.jdbc.MysqlDataSourceFactory;
+import com.netcompany.mvcdemo.utils.ConsoleUtils;
 import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.menu.MainMenu;
 
@@ -18,6 +19,7 @@ public class App {
         try {
             ConsoleContext appContext = initiateApplicationContext();
             MainMenu application = new MainMenu(appContext);
+            ConsoleUtils.cleanConsole();
             application.launch();
         } catch (SQLException e) {
             e.printStackTrace();
