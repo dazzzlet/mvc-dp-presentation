@@ -42,9 +42,9 @@ public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
         MenuItem menuItem = this.menuItems.get(index);
         if (menuItem instanceof AbstractUserMenuItem) {
             AbstractUserMenuItem userMenuItem = (AbstractUserMenuItem) menuItem;
-            userMenuItem.setUser(this.user);
+            userMenuItem.setUser(this.getUser());
             userMenuItem.launch();
-            this.user = userMenuItem.getUser();
+            this.setUser(userMenuItem.getUser());
         } else {
             super.launchMenuItem(index);
         }
@@ -52,7 +52,7 @@ public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
 
     @Override
     public String getMenuHeader() {
-        if (this.user != null) {
+        if (this.getUser() != null) {
             return String.format(
                     "User detail\n" +
                             "      ---\n\n" +
@@ -62,11 +62,11 @@ public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
                             "Bio: %s\n" +
                             "Role: %s\n" +
                             "Number of signed up activities: %d\n",
-                    this.user.getId(),
-                    this.user.getUsername(),
-                    this.user.getFirstname(),
-                    this.user.getBio(),
-                    this.user.getRole().name(),
+                    this.getUser().getId(),
+                    this.getUser().getUsername(),
+                    this.getUser().getFirstname(),
+                    this.getUser().getBio(),
+                    this.getUser().getRole().name(),
                     this.registerRecords.size()
             );
         }

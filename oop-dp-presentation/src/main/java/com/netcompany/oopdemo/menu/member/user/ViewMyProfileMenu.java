@@ -24,9 +24,21 @@ public class ViewMyProfileMenu extends AbstractAuthorizedMenu implements MenuIte
         this.menuItems.add(new UpdateProfileMenuItem(appCtx));
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public void launch() {
-        this.user = this.userService.getUserById(this.appCtx.getIdentity().getUserId());
+        this.setUser(
+                this.userService.getUserById(
+                        this.appCtx.getIdentity().getUserId()
+                )
+        );
         this.registerRecords = this.activityService.getAllRegisteredActivityForUser(this.appCtx.getIdentity().getUserId());
         super.launch();
     }
@@ -36,9 +48,9 @@ public class ViewMyProfileMenu extends AbstractAuthorizedMenu implements MenuIte
         MenuItem menuItem = this.menuItems.get(index);
         if (menuItem instanceof AbstractUserMenuItem) {
             AbstractUserMenuItem userMenuItem = (AbstractUserMenuItem) menuItem;
-            userMenuItem.setUser(this.user);
+            userMenuItem.setUser(this.getUser());
             userMenuItem.launch();
-            this.user = userMenuItem.getUser();
+            this.setUser(userMenuItem.getUser());
         } else {
             super.launchMenuItem(index);
         }
@@ -46,7 +58,7 @@ public class ViewMyProfileMenu extends AbstractAuthorizedMenu implements MenuIte
 
     @Override
     public String getMenuHeader() {
-        if (this.user != null) {
+        if (this.getUser() != null) {
             return String.format(
                     "My profile\n" +
                             "      ---\n\n" +
@@ -54,9 +66,9 @@ public class ViewMyProfileMenu extends AbstractAuthorizedMenu implements MenuIte
                             "First name: %s\n" +
                             "Bio: %s\n" +
                             "Number of signed up activities: %d\n",
-                    this.user.getUsername(),
-                    this.user.getFirstname(),
-                    this.user.getBio(),
+                    this.getUser().getUsername(),
+                    this.getUser().getFirstname(),
+                    this.getUser().getBio(),
                     this.registerRecords.size()
             );
         }
