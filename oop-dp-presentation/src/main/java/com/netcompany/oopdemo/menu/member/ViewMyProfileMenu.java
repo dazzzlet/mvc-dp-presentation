@@ -1,40 +1,35 @@
-package com.netcompany.oopdemo.menu.organizer.user;
+package com.netcompany.oopdemo.menu.member;
 
 import com.netcompany.oopdemo.core.AbstractAuthorizedMenu;
 import com.netcompany.oopdemo.core.ConsoleContext;
 import com.netcompany.oopdemo.core.MenuItem;
-import com.netcompany.oopdemo.dto.Activity;
 import com.netcompany.oopdemo.dto.Register;
 import com.netcompany.oopdemo.dto.User;
-import com.netcompany.oopdemo.menu.common.AbstractActivityMenuItem;
 import com.netcompany.oopdemo.menu.common.AbstractUserMenuItem;
+import com.netcompany.oopdemo.menu.organizer.user.UpdateUserMenuItem;
 import com.netcompany.oopdemo.service.ActivityService;
 import com.netcompany.oopdemo.service.UserService;
-import com.netcompany.oopdemo.utils.StringUtils;
 
 import java.util.List;
 
-public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
+public class ViewMyProfileMenu extends AbstractAuthorizedMenu implements MenuItem {
     private final UserService userService;
     private final ActivityService activityService;
     private User user;
     private List<Register> registerRecords;
 
-    public OrganizerViewUserMenu(ConsoleContext appCtx) {
+    public ViewMyProfileMenu(ConsoleContext appCtx) {
         super(appCtx);
         this.userService = new UserService(appCtx.getConnection());
         this.activityService = new ActivityService(appCtx.getConnection());
-        this.menuItems.add(new UpdateUserMenuItem(appCtx));
-
+        this.menuItems.add(new UpdateProfileMenuItem(appCtx));
     }
 
-    public void setUser(User user) {
-        this.registerRecords = activityService.getAllRegisteredActivityForUser(user.getId());
-        this.user = user;
-    }
-
-    public User getUser() {
-        return user;
+    @Override
+    public void launch() {
+        this.user = this.userService.getUserById(this.appCtx.getIdentity().getUserId());
+        this.registerRecords = this.activityService.getAllRegisteredActivityForUser(this.appCtx.getIdentity().getUserId());
+        super.launch();
     }
 
     @Override
@@ -54,19 +49,15 @@ public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
     public String getMenuHeader() {
         if (this.user != null) {
             return String.format(
-                    "User detail\n" +
+                    "My profile\n" +
                             "      ---\n\n" +
-                            "ID: %d\n" +
                             "Username: %s\n" +
                             "First name: %s\n" +
                             "Bio: %s\n" +
-                            "Role: %s\n" +
                             "Number of signed up activities: %d\n",
-                    this.user.getId(),
                     this.user.getUsername(),
                     this.user.getFirstname(),
                     this.user.getBio(),
-                    this.user.getRole().name(),
                     this.registerRecords.size()
             );
         }
@@ -75,6 +66,11 @@ public class OrganizerViewUserMenu extends AbstractAuthorizedMenu {
 
     @Override
     public String getBackItemName() {
-        return "Back to list users";
+        return "Back to dashboard";
+    }
+
+    @Override
+    public String getItemName() {
+        return "View my profile";
     }
 }
