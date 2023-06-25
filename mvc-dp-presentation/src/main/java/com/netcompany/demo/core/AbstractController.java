@@ -33,7 +33,6 @@ public abstract class AbstractController<TModel extends Model> {
         EventArg viewEventArg = null;
         do {
             action = this.launch(lastViewCall, viewEventArg);
-            System.out.println("Loop:" + this.getClass() + "| Action:" + action);
             if (action != null) {
                 if (action instanceof ViewAction) {
                     ViewAction viewAction = (ViewAction) action;
@@ -44,7 +43,6 @@ public abstract class AbstractController<TModel extends Model> {
                     DispatchAction dispatchAction = (DispatchAction) action;
                     AbstractController<?> controller = this.applicationContext.getControllerMap()
                             .get(dispatchAction.getControllerClass());
-                    System.out.println("Dispatch" + controller.getClass());
                     controller.launchFromOtherController(dispatchAction.getNavigationParam());
                     lastViewCall = null;
                     viewEventArg = null;

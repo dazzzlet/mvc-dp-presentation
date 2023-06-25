@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public abstract class AbstractMenuView<TModel extends MenuModel> extends AbstractView<TModel> {
     private static final Pattern numericPattern = Pattern.compile("^\\d+$");
     private final Console console;
-    private boolean isCleanMenu = false;
+    private boolean isCleanMenu = true;
 
     public AbstractMenuView(Console console) {
         this.console = console;
