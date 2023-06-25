@@ -21,21 +21,24 @@ public class LoginController extends AbstractController<LoginModel> {
 
     @Override
     protected Action launch(View sender, EventArg arg) {
-        System.out.println("Login:" + sender + "| Arg:" + arg);
         if (sender == null) {
             return new ViewAction(loginView);
         } else {
             if (arg instanceof LoginEventArg) {
                 LoginEventArg loginArg = (LoginEventArg) arg;
-                if (this.loginUser(loginArg.getUserName(), loginArg.getPassword())) {
-                    return EmptyAction.getEmptyAction();
-                } else {
-                    this.getModel().setSuccess(false);
-                    this.getModel().setMessage("Username or password is invalid. Please tried again!");
-                    return new ViewAction(loginView);
-                }
+                return this.handleLoginEvent(loginArg);
             }
             return EmptyAction.getEmptyAction();
+        }
+    }
+
+    private Action handleLoginEvent(LoginEventArg loginArg) {
+        if (this.loginUser(loginArg.getUserName(), loginArg.getPassword())) {
+            return EmptyAction.getEmptyAction();
+        } else {
+            this.getModel().setSuccess(false);
+            this.getModel().setMessage("Username or password is invalid. Please tried again!");
+            return new ViewAction(loginView);
         }
     }
 

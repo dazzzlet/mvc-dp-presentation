@@ -10,8 +10,6 @@ import com.netcompany.demo.utils.StringUtils;
 
 import java.io.Console;
 
-import static com.netcompany.demo.utils.Constants.APPLICATION_HEADER;
-
 public class OrganizerUpdateActivityView extends AbstractView<ActivityModel> {
     private final Console console;
 
@@ -55,7 +53,7 @@ public class OrganizerUpdateActivityView extends AbstractView<ActivityModel> {
     }
 
     private void renderMessage(String message) {
-//        ConsoleUtils.cleanConsole();
+        ConsoleUtils.cleanConsole();
         System.out.println(message);
         console.readLine();
     }

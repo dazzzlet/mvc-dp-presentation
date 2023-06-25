@@ -7,6 +7,7 @@ import com.netcompany.demo.event.ActivityUpdateEventArg;
 import com.netcompany.demo.event.UserUpdateEventArg;
 import com.netcompany.demo.model.UserModel;
 import com.netcompany.demo.utils.StringUtils;
+import com.netcompany.demo.utils.ConsoleUtils;
 
 import java.io.Console;
 
@@ -46,7 +47,7 @@ public class OrganizerUpdateUserView extends AbstractView<UserModel> {
     }
 
     private void renderMessage(String message) {
-//        ConsoleUtils.cleanConsole();
+        ConsoleUtils.cleanConsole();
         System.out.println(message);
         console.readLine();
     }
