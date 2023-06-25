@@ -21,7 +21,6 @@ public class LoginController extends AbstractController<LoginModel> {
 
     @Override
     protected Action launch(View sender, EventArg arg) {
-        System.out.println("Login:" + sender + "| Arg:" + arg);
         if (sender == null) {
             return new ViewAction(loginView);
         } else {

@@ -2,15 +2,10 @@ package com.netcompany.demo.view;
 
 import com.netcompany.demo.core.AbstractView;
 import com.netcompany.demo.core.EventArg;
-import com.netcompany.demo.dto.Activity;
 import com.netcompany.demo.dto.User;
-import com.netcompany.demo.event.ActivityUpdateEventArg;
 import com.netcompany.demo.event.UserUpdateEventArg;
-import com.netcompany.demo.model.ActivityModel;
 import com.netcompany.demo.model.UserModel;
 import com.netcompany.demo.utils.ConsoleUtils;
-import com.netcompany.demo.utils.StringUtils;
-
 import java.io.Console;
 
 public class UpdateUserProfileView extends AbstractView<UserModel> {

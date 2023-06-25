@@ -33,7 +33,6 @@ public class ActivityController extends AbstractAuthorizedMenuController<Activit
     private Activity currentActivity;
     private AbstractView<ActivityModel> memberViewActivityView;
     private AbstractView<ActivityModel> organizerViewActivityView;
-    private AbstractView<ActivityModel> view = null;
     private boolean isViewMode = true;
 
     public ActivityController(ApplicationContext applicationContext) {
@@ -53,10 +52,10 @@ public class ActivityController extends AbstractAuthorizedMenuController<Activit
         if (arg instanceof ActivityUpdateEventArg) {
             ActivityUpdateEventArg activityUpdateArg = (ActivityUpdateEventArg) arg;
             this.handleUpdateActivity(activityUpdateArg);
-            return new ViewAction(this.view);
+            return new ViewAction(this.getView());
         } else if (arg == null && sender == this.organizerUpdateActivityView) {
             this.setEditMode(false);
-            return new ViewAction(this.view);
+            return new ViewAction(this.getView());
         }
         return super.handleOtherEvent(sender, arg);
     }
@@ -85,13 +84,13 @@ public class ActivityController extends AbstractAuthorizedMenuController<Activit
     private void setEditMode(boolean isEditMode) {
         if (isEditMode) {
             this.isViewMode = false;
-            this.view = this.organizerUpdateActivityView;
+            this.setView(this.organizerUpdateActivityView);
             this.getModel().getMenuItems().clear();
             this.getModel().setSuccess(null);
             this.getModel().setMessage("");
         } else {
             this.isViewMode = true;
-            this.view = this.organizerViewActivityView;
+            this.setView(this.organizerViewActivityView);
             this.getModel().getMenuItems().clear();
             this.getModel().getMenuItems().add(this.updateActivityItem);
         }
@@ -189,7 +188,7 @@ public class ActivityController extends AbstractAuthorizedMenuController<Activit
                 this.setEditMode(true);
                 break;
         }
-        return new ViewAction(view);
+        return new ViewAction(this.getView());
     }
 
     private void signUpActivity(boolean isSignUp) {
@@ -247,11 +246,11 @@ public class ActivityController extends AbstractAuthorizedMenuController<Activit
 
     private void chooseView() {
         if (this.getIdentity().getRole() == UserRole.Member) {
-            this.view = this.memberViewActivityView;
+            this.setView(this.memberViewActivityView);
         } else if (isViewMode) {
-            this.view = this.organizerViewActivityView;
+            this.setView(this.organizerViewActivityView);
         } else {
-            this.view = this.organizerUpdateActivityView;
+            this.setView(this.organizerUpdateActivityView);
         }
     }
 }
